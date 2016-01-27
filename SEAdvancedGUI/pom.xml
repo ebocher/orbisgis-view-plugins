@@ -37,6 +37,12 @@
             <version>5.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.orbisgis</groupId>
+            <artifactId>toc-api</artifactId>
+            <version>5.1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
    <build>

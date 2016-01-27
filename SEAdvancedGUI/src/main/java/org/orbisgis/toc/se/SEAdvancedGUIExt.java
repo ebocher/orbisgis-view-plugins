@@ -28,10 +28,80 @@
  */
 package org.orbisgis.toc.se;
 
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import org.orbisgis.coremap.map.MapTransform;
+import org.orbisgis.sif.UIFactory;
+import org.orbisgis.sif.UIPanel;
+import org.orbisgis.tocapi.StyleAction;
+import org.orbisgis.tocapi.TocActionFactory;
+import org.orbisgis.tocapi.TocExt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xnap.commons.i18n.I18n;
+import org.xnap.commons.i18n.I18nFactory;
+
 /**
  * Add a rigth-click menu in the TOC to display the advanced Symbology Encoding GUI.
  * @author Erwan Bocher
  */
-public class SEAdvancedGUIExt {
+public class SEAdvancedGUIExt implements TocActionFactory{
+    
+    private static final I18n I18N = I18nFactory.getI18n(SEAdvancedGUIExt.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SEAdvancedGUIExt.class);
+    public static final String A_ADVANCED_STYLE_EDITION = "A_ADVANCED_STYLE_EDITION";
+
+    @Override
+    public List<Action> createActions(TocExt tocExt) {
+        return Arrays.asList(new Action[]{new StyleAction(tocExt,A_ADVANCED_STYLE_EDITION,
+                    I18N.tr("Advanced style editor"), I18N.tr("Open the advanced editor for SE styles"),
+                    new ImageIcon(SEAdvancedGUIExt.class.getResource("palette_edit.png")),
+                    EventHandler.create(ActionListener.class, this, "onAdvancedEditor"),null).setOnSingleStyleSelection(true)});
+    }
+
+    @Override
+    public void disposeActions(TocExt target, List<Action> actions) {
+ 
+    }
+    
+    
+     /**
+         * If used, this method opens an advanced editor for the currently selected
+         * style.
+         */
+        public void onAdvancedEditor(){
+                try {
+                        Style[] styles = mapContext.getSelectedStyles();
+                        if(styles.length == 1){
+                                Style style = styles[0];
+                                ILayer layer = style.getLayer();
+                                if(isStyleAllowed(layer)){
+                                    int index = layer.indexOf(style);
+                                    // Obtain MapTransform
+                                    MapEditor editor = mapElement.getMapEditor();
+                                    MapTransform mt = editor.getMapControl().getMapTransform();
+                                    if (mt == null) {
+                                            JOptionPane.showMessageDialog(null,I18N.tr("Advanced Editor can't be loaded"));
+                                    }
+
+                                    LegendUIController controller = new LegendUIController(index,style);
+
+                                    if (UIFactory.showDialog((UIPanel)controller.getMainPanel())) {
+                                            layer.setStyle(index,controller.getEditedFeatureTypeStyle());
+                                    }
+                                }else{
+                                   LOGGER.info("This functionality is not supported."); 
+                                }
+                        }
+		} catch (SeExceptions.InvalidStyle ex) {
+			LOGGER.error(I18N.tr("Error while editing the legend"), ex);
+		}
+        }
+    
     
 }
