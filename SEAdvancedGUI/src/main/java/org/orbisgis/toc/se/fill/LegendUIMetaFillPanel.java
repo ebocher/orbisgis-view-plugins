@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,20 +26,19 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui.fill;
+package org.orbisgis.toc.se.fill;
 
 import javax.swing.Icon;
-import org.orbisgis.core.renderer.se.FillNode;
-import org.orbisgis.core.renderer.se.fill.DensityFill;
-import org.orbisgis.core.renderer.se.fill.DotMapFill;
-import org.orbisgis.core.renderer.se.fill.Fill;
-import org.orbisgis.core.renderer.se.fill.GraphicFill;
-import org.orbisgis.core.renderer.se.fill.HatchedFill;
-import org.orbisgis.core.renderer.se.fill.SolidFill;
-import org.orbisgis.view.toc.actions.cui.LegendUIAbstractMetaPanel;
-import org.orbisgis.view.toc.actions.cui.LegendUIComponent;
-import org.orbisgis.view.toc.actions.cui.LegendUIController;
-import org.orbisgis.view.icons.OrbisGISIcon;
+import org.orbisgis.coremap.renderer.se.FillNode;
+import org.orbisgis.coremap.renderer.se.fill.DensityFill;
+import org.orbisgis.coremap.renderer.se.fill.DotMapFill;
+import org.orbisgis.coremap.renderer.se.fill.Fill;
+import org.orbisgis.coremap.renderer.se.fill.GraphicFill;
+import org.orbisgis.coremap.renderer.se.fill.HatchedFill;
+import org.orbisgis.coremap.renderer.se.fill.SolidFill;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 /**
  * Meta-Panel for fill edition
@@ -169,7 +168,7 @@ public class LegendUIMetaFillPanel extends LegendUIAbstractMetaPanel {
 
 	@Override
 	public Icon getIcon() {
-		return OrbisGISIcon.getIcon("palette");
+		return SEAdvancedIcon.getIcon("palette");
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,7 +26,7 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui.graphic;
+package org.orbisgis.toc.se.graphic;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -34,32 +34,24 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import org.orbisgis.core.renderer.se.fill.SolidFill;
-import org.orbisgis.core.renderer.se.graphic.AxisChart;
-import org.orbisgis.core.renderer.se.graphic.Category;
-import org.orbisgis.core.renderer.se.graphic.CategoryListener;
-import org.orbisgis.core.renderer.se.graphic.Graphic;
-import org.orbisgis.core.renderer.se.graphic.GraphicCollection;
-import org.orbisgis.core.renderer.se.graphic.PieChart;
-import org.orbisgis.core.renderer.se.parameter.ParameterException;
-import org.orbisgis.core.renderer.se.parameter.real.RealAttribute;
-import org.orbisgis.core.renderer.se.parameter.real.RealParameter;
-import org.orbisgis.core.renderer.se.stroke.PenStroke;
-import org.orbisgis.view.toc.actions.cui.LegendUIAbstractPanel;
-import org.orbisgis.view.toc.actions.cui.LegendUIComponent;
-import org.orbisgis.view.toc.actions.cui.LegendUIController;
-import org.orbisgis.view.toc.actions.cui.components.ComboBoxInput;
-import org.orbisgis.view.toc.actions.cui.components.TextInput;
-import org.orbisgis.view.toc.actions.cui.components.UomInput;
-import org.orbisgis.view.toc.actions.cui.fill.LegendUIMetaFillPanel;
+import org.orbisgis.coremap.renderer.se.graphic.AxisChart;
+import org.orbisgis.coremap.renderer.se.graphic.Category;
+import org.orbisgis.coremap.renderer.se.graphic.CategoryListener;
+import org.orbisgis.coremap.renderer.se.graphic.GraphicCollection;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.components.ComboBoxInput;
+import org.orbisgis.toc.se.components.TextInput;
+import org.orbisgis.toc.se.components.UomInput;
+import org.orbisgis.toc.se.fill.LegendUIMetaFillPanel;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
 import org.orbisgis.view.toc.actions.cui.stroke.LegendUIMetaStrokePanel;
-import org.orbisgis.view.icons.OrbisGISIcon;
+
+
 
 /**
  *
@@ -422,7 +414,7 @@ public class LegendUIAxisChartPanel extends LegendUIComponent implements LegendU
 
         @Override
         public Icon getIcon() {
-            return OrbisGISIcon.getIcon("palette");
+            return SEAdvancedIcon.getIcon("palette");
         }
 
         @Override
@@ -461,7 +453,7 @@ public class LegendUIAxisChartPanel extends LegendUIComponent implements LegendU
 
         @Override
         public Icon getIcon() {
-            return OrbisGISIcon.getIcon("palette");
+            return SEAdvancedIcon.getIcon("palette");
         }
 
         @Override
@@ -500,7 +492,7 @@ public class LegendUIAxisChartPanel extends LegendUIComponent implements LegendU
 
         @Override
         public Icon getIcon() {
-            return OrbisGISIcon.getIcon("palette");
+            return SEAdvancedIcon.getIcon("palette");
         }
 
         @Override

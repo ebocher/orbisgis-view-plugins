@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,7 +26,7 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui.graphic;
+package org.orbisgis.toc.se.graphic;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -46,18 +46,17 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-import org.orbisgis.core.renderer.se.graphic.TransformNode;
-import org.orbisgis.core.renderer.se.parameter.real.RealLiteral;
-import org.orbisgis.core.renderer.se.transform.Matrix;
-import org.orbisgis.core.renderer.se.transform.Rotate;
-import org.orbisgis.core.renderer.se.transform.Scale;
-import org.orbisgis.core.renderer.se.transform.Transform;
-import org.orbisgis.core.renderer.se.transform.Transformation;
-import org.orbisgis.core.renderer.se.transform.Translate;
-import org.orbisgis.view.toc.actions.cui.LegendUIAbstractPanel;
-import org.orbisgis.view.toc.actions.cui.LegendUIComponent;
-import org.orbisgis.view.toc.actions.cui.LegendUIController;
-import org.orbisgis.view.icons.OrbisGISIcon;
+import org.orbisgis.coremap.renderer.se.graphic.TransformNode;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealLiteral;
+import org.orbisgis.coremap.renderer.se.transform.Matrix;
+import org.orbisgis.coremap.renderer.se.transform.Rotate;
+import org.orbisgis.coremap.renderer.se.transform.Scale;
+import org.orbisgis.coremap.renderer.se.transform.Transform;
+import org.orbisgis.coremap.renderer.se.transform.Transformation;
+import org.orbisgis.coremap.renderer.se.transform.Translate;
+import org.orbisgis.toc.se.LegendUIAbstractPanel;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 
 /**
@@ -116,10 +115,10 @@ public class LegendUITransformPanel extends LegendUIComponent {
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 
-        btnRm = new JButton(OrbisGISIcon.getIcon("remove"));
-        btnAdd = new JButton(OrbisGISIcon.getIcon("add"));
-        btnDown = new JButton(OrbisGISIcon.getIcon("go-up"));
-        btnUp = new JButton(OrbisGISIcon.getIcon("go-down"));
+        btnRm = new JButton(SEAdvancedIcon.getIcon("remove"));
+        btnAdd = new JButton(SEAdvancedIcon.getIcon("add"));
+        btnDown = new JButton(SEAdvancedIcon.getIcon("go-up"));
+        btnUp = new JButton(SEAdvancedIcon.getIcon("go-down"));
 
 
         btnRm.setMargin(new Insets(0, 0, 0, 0));
@@ -286,7 +285,7 @@ public class LegendUITransformPanel extends LegendUIComponent {
 
     @Override
     public Icon getIcon() {
-        return OrbisGISIcon.getIcon("palette");
+        return SEAdvancedIcon.getIcon("palette");
     }
 
     @Override
@@ -354,7 +353,7 @@ public class LegendUITransformPanel extends LegendUIComponent {
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            this.setIcon(OrbisGISIcon.getIcon("palette"));
+            this.setIcon(SEAdvancedIcon.getIcon("palette"));
             return this;
         }
     }
