@@ -41,6 +41,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 /**
  *
@@ -93,7 +94,7 @@ public abstract class LegendUIComponent extends LegendUIAbstractPanel {
 		this.name = name;
 
 		if (nullable) {
-			this.nullifier = new JButton(OrbisGISIcon.getIcon("delete"));
+			this.nullifier = new JButton(SEAdvancedIcon.getIcon("delete"));
 			nullifier.setMargin(new Insets(0, 0, 0, 0));
 			this.nullifier.addActionListener(new ActionListener() {
 

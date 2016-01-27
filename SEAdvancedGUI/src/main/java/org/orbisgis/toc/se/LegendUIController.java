@@ -30,6 +30,10 @@ package org.orbisgis.toc.se;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import org.orbisgis.coremap.layerModel.ILayer;
 import org.orbisgis.coremap.renderer.se.Rule;
 import org.orbisgis.coremap.renderer.se.SeExceptions.InvalidStyle;

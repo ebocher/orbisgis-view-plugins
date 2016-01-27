@@ -34,7 +34,15 @@ import java.util.logging.Logger;
 import org.orbisgis.coremap.renderer.se.AreaSymbolizer;
 import org.orbisgis.coremap.renderer.se.Symbolizer;
 import org.orbisgis.coremap.renderer.se.VectorSymbolizer;
+import org.orbisgis.toc.se.components.ComboBoxInput;
 import org.orbisgis.toc.se.components.TextInput;
+import org.orbisgis.view.toc.actions.cui.components.UomInput;
+import org.orbisgis.view.toc.actions.cui.fill.LegendUIMetaFillPanel;
+import org.orbisgis.view.toc.actions.cui.graphic.LegendUICompositeGraphicPanel;
+import org.orbisgis.view.toc.actions.cui.graphic.LegendUITranslatePanel;
+import org.orbisgis.view.toc.actions.cui.label.LegendUIMetaLabelPanel;
+import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.view.toc.actions.cui.stroke.LegendUIMetaStrokePanel;
 
 /**
  * This panel edit symbolizer

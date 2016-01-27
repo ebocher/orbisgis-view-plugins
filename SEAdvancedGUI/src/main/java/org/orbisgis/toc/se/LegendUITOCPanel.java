@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,7 +26,7 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui;
+package org.orbisgis.toc.se;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -46,14 +46,14 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
-
-import org.apache.log4j.Logger;
-import org.orbisgis.view.icons.OrbisGISIcon;
-import org.orbisgis.core.renderer.se.AreaSymbolizer;
-import org.orbisgis.core.renderer.se.LineSymbolizer;
-import org.orbisgis.core.renderer.se.PointSymbolizer;
-import org.orbisgis.core.renderer.se.Symbolizer;
-import org.orbisgis.core.renderer.se.TextSymbolizer;
+import org.orbisgis.coremap.renderer.se.AreaSymbolizer;
+import org.orbisgis.coremap.renderer.se.LineSymbolizer;
+import org.orbisgis.coremap.renderer.se.PointSymbolizer;
+import org.orbisgis.coremap.renderer.se.Symbolizer;
+import org.orbisgis.coremap.renderer.se.TextSymbolizer;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xnap.commons.i18n.I18n;
 import org.xnap.commons.i18n.I18nFactory;
 
@@ -64,8 +64,8 @@ import org.xnap.commons.i18n.I18nFactory;
  * @author Maxence Laurent
  */
 public class LegendUITOCPanel extends JPanel implements TreeSelectionListener, LegendUIComponentListener {
-    private static final Logger LOGGER = Logger.getLogger(LegendUITOCPanel.class);
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(LegendUITOCPanel.class);
+    
 	private final LegendUIController controller;
 	private JTree sTree;
 	private JPanel tools;
@@ -86,8 +86,8 @@ public class LegendUITOCPanel extends JPanel implements TreeSelectionListener, L
 
 		currentRuleId = -1;
 
-		btnAdd = new JButton(OrbisGISIcon.getIcon("add"));
-		btnRm = new JButton(OrbisGISIcon.getIcon("remove"));
+		btnAdd = new JButton(SEAdvancedIcon.getIcon("add"));
+		btnRm = new JButton(SEAdvancedIcon.getIcon("remove"));
 
 		btnRm.setMargin(new Insets(0, 0, 0, 0));
 		btnAdd.setMargin(new Insets(0, 0, 0, 0));
@@ -294,11 +294,11 @@ public class LegendUITOCPanel extends JPanel implements TreeSelectionListener, L
 				LegendUIComponent comp = (LegendUIComponent) userObject;
 				icon = comp.getIcon();
 			} else {
-				icon = OrbisGISIcon.getIcon("sld_file");
+				icon = SEAdvancedIcon.getIcon("sld_file");
 			}
 
 			if (icon == null) {
-				icon = OrbisGISIcon.getIcon("pencil");
+				icon = SEAdvancedIcon.getIcon("palette");
 			}
 
 			setIcon(icon);

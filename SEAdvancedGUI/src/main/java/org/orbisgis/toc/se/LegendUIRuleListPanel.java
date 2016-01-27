@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,7 +26,7 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui;
+package org.orbisgis.toc.se;
 
 import java.awt.BorderLayout;
 import java.awt.Insets;
@@ -44,12 +44,13 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import org.orbisgis.view.icons.OrbisGISIcon;
-import org.orbisgis.core.renderer.se.Rule;
+import org.orbisgis.coremap.renderer.se.Rule;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 /**
  *
  * @author Maxence Laurent
+ * @author Erwan Bocher
  */
 public class LegendUIRuleListPanel extends JPanel implements LegendUIComponentListener {
 	
@@ -117,10 +118,10 @@ public class LegendUIRuleListPanel extends JPanel implements LegendUIComponentLi
 		this.setBorder(BorderFactory.createTitledBorder("Rules"));
 
 
-		btnRm = new JButton(OrbisGISIcon.getIcon("remove"));
-		btnAdd = new JButton(OrbisGISIcon.getIcon("add"));
-		btnDown = new JButton(OrbisGISIcon.getIcon("go-down"));
-		btnUp = new JButton(OrbisGISIcon.getIcon("go-up"));
+		btnRm = new JButton(SEAdvancedIcon.getIcon("remove"));
+		btnAdd = new JButton(SEAdvancedIcon.getIcon("add"));
+		btnDown = new JButton(SEAdvancedIcon.getIcon("go-down"));
+		btnUp = new JButton(SEAdvancedIcon.getIcon("go-up"));
 
 		btnRm.setMargin(new Insets(0, 0, 0, 0));
 		btnAdd.setMargin(new Insets(0, 0, 0, 0));
