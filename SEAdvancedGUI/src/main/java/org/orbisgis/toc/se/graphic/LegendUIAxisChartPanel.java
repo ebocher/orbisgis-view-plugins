@@ -37,19 +37,27 @@ import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import org.orbisgis.coremap.renderer.se.fill.SolidFill;
 import org.orbisgis.coremap.renderer.se.graphic.AxisChart;
 import org.orbisgis.coremap.renderer.se.graphic.Category;
 import org.orbisgis.coremap.renderer.se.graphic.CategoryListener;
+import org.orbisgis.coremap.renderer.se.graphic.Graphic;
 import org.orbisgis.coremap.renderer.se.graphic.GraphicCollection;
+import org.orbisgis.coremap.renderer.se.graphic.PieChart;
+import org.orbisgis.coremap.renderer.se.parameter.ParameterException;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealAttribute;
 import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
+import org.orbisgis.coremap.renderer.se.stroke.PenStroke;
+import org.orbisgis.toc.se.LegendUIAbstractPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.components.ComboBoxInput;
 import org.orbisgis.toc.se.components.TextInput;
 import org.orbisgis.toc.se.components.UomInput;
 import org.orbisgis.toc.se.fill.LegendUIMetaFillPanel;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
-import org.orbisgis.view.toc.actions.cui.stroke.LegendUIMetaStrokePanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.toc.se.stroke.LegendUIMetaStrokePanel;
 
 
 
@@ -202,7 +210,7 @@ public class LegendUIAxisChartPanel extends LegendUIComponent implements LegendU
 
     @Override
     public Icon getIcon() {
-        return OrbisGISIcon.getIcon("palette");
+        return SEAdvancedIcon.getIcon("palette");
     }
 
     @Override
@@ -243,15 +251,15 @@ public class LegendUIAxisChartPanel extends LegendUIComponent implements LegendU
 
             LegendUIAbstractPanel tools = new LegendUIAbstractPanel(controller);
 
-            JButton btnRm = new JButton(OrbisGISIcon.getIcon("remove"));
+            JButton btnRm = new JButton(SEAdvancedIcon.getIcon("remove"));
             btnRm.setMargin(new Insets(0, 0, 0, 0));
             btnRm.addActionListener(new ActionRemove(i));
 
-            JButton btnUp = new JButton(OrbisGISIcon.getIcon("go-up"));
+            JButton btnUp = new JButton(SEAdvancedIcon.getIcon("go-up"));
             btnUp.setMargin(new Insets(0, 0, 0, 0));
             btnUp.addActionListener(new ActionMoveUp(i));
 
-            JButton btnDown = new JButton(OrbisGISIcon.getIcon("go-down"));
+            JButton btnDown = new JButton(SEAdvancedIcon.getIcon("go-down"));
             btnDown.setMargin(new Insets(0, 0, 0, 0));
             btnDown.addActionListener(new ActionMoveDown(i));
 
@@ -264,7 +272,7 @@ public class LegendUIAxisChartPanel extends LegendUIComponent implements LegendU
 
         catContainer.add(categories, BorderLayout.NORTH);
 
-        JButton btnAdd = new JButton(OrbisGISIcon.getIcon("add"));
+        JButton btnAdd = new JButton(SEAdvancedIcon.getIcon("add"));
 
 
         btnAdd.addActionListener(new ActionListener() {
@@ -532,7 +540,7 @@ public class LegendUIAxisChartPanel extends LegendUIComponent implements LegendU
 
         @Override
         public Icon getIcon() {
-            return OrbisGISIcon.getIcon("palette");
+            return SEAdvancedIcon.getIcon("palette");
         }
 
         @Override

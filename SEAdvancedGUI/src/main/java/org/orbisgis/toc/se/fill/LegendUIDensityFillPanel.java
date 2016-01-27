@@ -31,16 +31,18 @@ package org.orbisgis.toc.se.fill;
 import java.awt.BorderLayout;
 import javax.swing.Icon;
 import org.orbisgis.coremap.renderer.se.fill.DensityFill;
+import org.orbisgis.coremap.renderer.se.fill.Fill;
 import org.orbisgis.coremap.renderer.se.graphic.GraphicCollection;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
 import org.orbisgis.coremap.renderer.se.stroke.PenStroke;
 import org.orbisgis.toc.se.LegendUIAbstractPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.components.RadioSwitch;
+import org.orbisgis.toc.se.graphic.LegendUICompositeGraphicPanel;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.view.toc.actions.cui.graphic.LegendUICompositeGraphicPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
-import org.orbisgis.view.toc.actions.cui.stroke.LegendUIPenStrokePanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.toc.se.stroke.LegendUIPenStrokePanel;
 
 /**
  *

@@ -35,6 +35,7 @@ import javax.swing.Icon;
 import org.orbisgis.coremap.renderer.se.common.VariableOnlineResource;
 import org.orbisgis.coremap.renderer.se.graphic.ExternalGraphic;
 import org.orbisgis.coremap.renderer.se.graphic.ExternalGraphicSource;
+import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;

@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,7 +26,7 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui.parameter;
+package org.orbisgis.toc.se.parameter;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -34,36 +34,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.beans.EventHandler;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import org.orbisgis.core.renderer.se.parameter.Recode;
-import org.orbisgis.core.renderer.se.parameter.SeParameter;
-import org.orbisgis.core.renderer.se.parameter.color.ColorLiteral;
-import org.orbisgis.core.renderer.se.parameter.color.ColorParameter;
-import org.orbisgis.core.renderer.se.parameter.color.Recode2Color;
-import org.orbisgis.core.renderer.se.parameter.real.RealLiteral;
-import org.orbisgis.core.renderer.se.parameter.real.RealParameter;
-import org.orbisgis.core.renderer.se.parameter.real.Recode2Real;
-import org.orbisgis.core.renderer.se.parameter.string.Recode2String;
-import org.orbisgis.core.renderer.se.parameter.string.StringLiteral;
-import org.orbisgis.core.renderer.se.parameter.string.StringParameter;
-import org.orbisgis.view.toc.actions.cui.LegendUIAbstractPanel;
-import org.orbisgis.view.toc.actions.cui.LegendUIComponent;
-import org.orbisgis.view.toc.actions.cui.LegendUIController;
-import org.orbisgis.view.toc.actions.cui.components.TextInput;
+import org.orbisgis.coremap.renderer.se.parameter.Recode;
+import org.orbisgis.coremap.renderer.se.parameter.color.ColorLiteral;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealLiteral;
+import org.orbisgis.coremap.renderer.se.parameter.string.StringLiteral;
+import org.orbisgis.coremap.renderer.se.parameter.string.StringParameter;
+import org.orbisgis.toc.se.LegendUIAbstractPanel;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIColorComponent;
 import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIColorLiteralPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIMetaColorPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
 import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIRealComponent;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIRealLiteralPanel;
 import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIMetaStringPanel;
 import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIStringComponent;
 import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIStringLiteralPanel;
-import org.orbisgis.view.icons.OrbisGISIcon;
 
 /**
  * @author Maxence Laurent

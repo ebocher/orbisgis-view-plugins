@@ -34,11 +34,12 @@ import org.orbisgis.coremap.renderer.se.fill.DotMapFill;
 import org.orbisgis.coremap.renderer.se.fill.Fill;
 import org.orbisgis.coremap.renderer.se.graphic.GraphicCollection;
 import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
+import org.orbisgis.toc.se.LegendUIAbstractPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.graphic.LegendUICompositeGraphicPanel;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.view.toc.actions.cui.graphic.LegendUICompositeGraphicPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
 
 /**
  *

@@ -33,10 +33,11 @@ import org.orbisgis.coremap.renderer.se.common.OnlineResource;
 import org.orbisgis.coremap.renderer.se.graphic.MarkGraphic;
 import org.orbisgis.coremap.renderer.se.graphic.WellKnownName;
 import org.orbisgis.coremap.renderer.se.parameter.string.StringParameter;
+import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIMetaStringPanel;
+import org.orbisgis.toc.se.parameter.string.LegendUIMetaStringPanel;
 
 /**
  *

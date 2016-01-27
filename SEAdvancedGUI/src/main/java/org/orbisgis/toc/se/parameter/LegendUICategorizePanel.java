@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,20 +26,10 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui.parameter;
+package org.orbisgis.toc.se.parameter;
 
 import com.sun.media.jai.widget.DisplayJAI;
 import java.awt.BasicStroke;
-import java.awt.image.BufferedImage;
-
-import org.orbisgis.core.renderer.se.parameter.ParameterException;
-import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIStringComponent;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIRealLiteralPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIRealComponent;
-import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIColorLiteralPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIMetaColorPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIColorComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -47,37 +37,44 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import org.gdms.data.DataSource;
+import org.orbisgis.coremap.renderer.se.parameter.Categorize;
+import org.orbisgis.coremap.renderer.se.parameter.CategorizeListener;
+import org.orbisgis.coremap.renderer.se.parameter.LiteralListener;
+import org.orbisgis.coremap.renderer.se.parameter.ParameterException;
+import org.orbisgis.coremap.renderer.se.parameter.PropertyNameListener;
+import org.orbisgis.coremap.renderer.se.parameter.SeParameter;
+import org.orbisgis.coremap.renderer.se.parameter.ValueReference;
+import org.orbisgis.coremap.renderer.se.parameter.color.ColorHelper;
+import org.orbisgis.coremap.renderer.se.parameter.color.ColorLiteral;
+import org.orbisgis.coremap.renderer.se.parameter.color.ColorParameter;
+import org.orbisgis.coremap.renderer.se.parameter.real.Categorize2Real;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealAttribute;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealLiteral;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
+import org.orbisgis.coremap.renderer.se.parameter.string.StringLiteral;
+import org.orbisgis.coremap.renderer.se.parameter.string.StringParameter;
+import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
+import org.orbisgis.toc.se.LegendUIAbstractPanel;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.components.RadioSwitch;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
+import org.orbisgis.toc.se.parameter.color.LegendUIColorComponent;
+import org.orbisgis.toc.se.parameter.color.LegendUIColorLiteralPanel;
+import org.orbisgis.toc.se.parameter.color.LegendUIMetaColorPanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIRealComponent;
+import org.orbisgis.toc.se.parameter.real.LegendUIRealLiteralPanel;
+import org.orbisgis.toc.se.parameter.string.LegendUIMetaStringPanel;
+import org.orbisgis.toc.se.parameter.string.LegendUIStringComponent;
+import org.orbisgis.toc.se.parameter.string.LegendUIStringLiteralPanel;
 
-import org.orbisgis.core.renderer.classification.Range;
-import org.orbisgis.core.renderer.classification.RangeMethod;
-import org.orbisgis.core.renderer.se.parameter.Categorize;
-import org.orbisgis.core.renderer.se.parameter.CategorizeListener;
-import org.orbisgis.core.renderer.se.parameter.LiteralListener;
-import org.orbisgis.core.renderer.se.parameter.ValueReference;
-import org.orbisgis.core.renderer.se.parameter.PropertyNameListener;
-import org.orbisgis.core.renderer.se.parameter.SeParameter;
-import org.orbisgis.core.renderer.se.parameter.color.ColorHelper;
-import org.orbisgis.core.renderer.se.parameter.color.ColorLiteral;
-import org.orbisgis.core.renderer.se.parameter.color.ColorParameter;
-import org.orbisgis.core.renderer.se.parameter.real.Categorize2Real;
-import org.orbisgis.core.renderer.se.parameter.real.RealAttribute;
-import org.orbisgis.core.renderer.se.parameter.real.RealLiteral;
-import org.orbisgis.core.renderer.se.parameter.real.RealParameter;
-import org.orbisgis.core.renderer.se.parameter.string.StringLiteral;
-import org.orbisgis.core.renderer.se.parameter.string.StringParameter;
-import org.orbisgis.view.toc.actions.cui.LegendUIAbstractMetaPanel;
-import org.orbisgis.view.toc.actions.cui.LegendUIAbstractPanel;
-import org.orbisgis.view.toc.actions.cui.LegendUIComponent;
-import org.orbisgis.view.toc.actions.cui.LegendUIController;
-import org.orbisgis.view.toc.actions.cui.components.RadioSwitch;
-import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIMetaStringPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIStringLiteralPanel;
-import org.orbisgis.view.icons.OrbisGISIcon;
+
 
 /**
  * @todo BUGGY !!!!
@@ -211,7 +208,7 @@ public abstract class LegendUICategorizePanel extends LegendUIComponent
 
     @Override
     public Icon getIcon() {
-        return OrbisGISIcon.getIcon("palette");
+        return SEAdvancedIcon.getIcon("palette");
     }
 
     private void fireChange() {
@@ -241,7 +238,7 @@ public abstract class LegendUICategorizePanel extends LegendUIComponent
             }
 
             if (values.size() > 1) {
-                JButton rm = new JButton(OrbisGISIcon.getIcon("remove"));
+                JButton rm = new JButton(SEAdvancedIcon.getIcon("remove"));
                 rm.setMargin(new Insets(0, 0, 0, 0));
 
                 rm.addActionListener(new RmListener(i));

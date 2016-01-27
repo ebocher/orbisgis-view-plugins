@@ -36,8 +36,9 @@ import org.orbisgis.coremap.renderer.se.parameter.color.ColorParameter;
 import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
-import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIMetaColorPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
+import org.orbisgis.toc.se.parameter.color.LegendUIMetaColorPanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
 
 /**
  *
@@ -64,7 +65,7 @@ public abstract class LegendUISolidFillPanel extends LegendUIComponent implement
 
 	@Override
 	public Icon getIcon() {
-		return OrbisGISIcon.getIcon("palette");
+		return SEAdvancedIcon.getIcon("palette");
 	}
 
 	@Override

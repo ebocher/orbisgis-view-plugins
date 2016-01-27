@@ -1,12 +1,12 @@
 /**
- * OrbisGIS is a GIS application dedicated to scientific spatial simulation.
- * This cross-platform GIS is developed at French IRSTV institute and is able to
- * manipulate and create vector and raster spatial information.
- *
- * OrbisGIS is distributed under GPL 3 license. It is produced by the "Atelier SIG"
- * team of the IRSTV Institute <http://www.irstv.fr/> CNRS FR 2488.
+ * OrbisGIS is a GIS application dedicated to scientific spatial analysis.
+ * This cross-platform GIS is developed at the Lab-STICC laboratory by the DECIDE 
+ * team located in University of South Brittany, Vannes.
+ * 
+ * OrbisGIS is distributed under GPL 3 license.
  *
  * Copyright (C) 2007-2014 IRSTV (FR CNRS 2488)
+ * Copyright (C) 2015-2016 CNRS (UMR CNRS 6285)
  *
  * This file is part of OrbisGIS.
  *
@@ -26,29 +26,24 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.view.toc.actions.cui.parameter;
+package org.orbisgis.toc.se.parameter;
 
-import org.orbisgis.view.toc.actions.cui.parameter.string.LegendUIStringComponent;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIRealComponent;
-import org.orbisgis.view.toc.actions.cui.parameter.color.LegendUIColorComponent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
-import org.gdms.data.DataSource;
-import org.gdms.data.schema.Metadata;
-import org.gdms.driver.DriverException;
-import org.orbisgis.core.renderer.se.parameter.ValueReference;
-import org.orbisgis.core.renderer.se.parameter.real.RealParameter;
-import org.orbisgis.view.toc.actions.cui.components.ComboBoxInput;
-import org.orbisgis.view.icons.OrbisGISIcon;
+import org.orbisgis.coremap.renderer.se.parameter.ValueReference;
+import org.orbisgis.coremap.renderer.se.parameter.color.ColorParameter;
+import org.orbisgis.coremap.renderer.se.parameter.geometry.GeometryAttribute;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
+import org.orbisgis.coremap.renderer.se.parameter.string.StringParameter;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.components.ComboBoxInput;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
+import org.orbisgis.toc.se.parameter.color.LegendUIColorComponent;
+import org.orbisgis.toc.se.parameter.real.LegendUIRealComponent;
+import org.orbisgis.toc.se.parameter.string.LegendUIStringComponent;
 
-import org.gdms.data.types.Type;
-import org.orbisgis.core.renderer.se.parameter.color.ColorParameter;
-import org.orbisgis.core.renderer.se.parameter.geometry.GeometryAttribute;
-import org.orbisgis.core.renderer.se.parameter.string.StringParameter;
-import org.orbisgis.view.toc.actions.cui.LegendUIComponent;
-import org.orbisgis.view.toc.actions.cui.LegendUIController;
+
 
 /**
  *
@@ -116,7 +111,7 @@ public abstract class LegendUIPropertyNamePanel extends LegendUIComponent
 
 	@Override
 	public Icon getIcon() {
-        return OrbisGISIcon.getIcon("palette");
+        return SEAdvancedIcon.getIcon("palette");
 	}
 
 	@Override

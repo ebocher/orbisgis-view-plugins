@@ -56,6 +56,7 @@ import org.orbisgis.coremap.renderer.se.transform.Transformation;
 import org.orbisgis.coremap.renderer.se.transform.Translate;
 import org.orbisgis.toc.se.LegendUIAbstractPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 

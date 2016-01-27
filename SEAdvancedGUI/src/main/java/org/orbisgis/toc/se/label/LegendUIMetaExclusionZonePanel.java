@@ -32,6 +32,7 @@ import javax.swing.Icon;
 import org.orbisgis.coremap.renderer.se.label.ExclusionRadius;
 import org.orbisgis.coremap.renderer.se.label.ExclusionRectangle;
 import org.orbisgis.coremap.renderer.se.label.ExclusionZone;
+import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;

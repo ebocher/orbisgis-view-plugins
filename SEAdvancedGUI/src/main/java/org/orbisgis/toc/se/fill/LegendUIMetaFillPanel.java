@@ -36,6 +36,7 @@ import org.orbisgis.coremap.renderer.se.fill.Fill;
 import org.orbisgis.coremap.renderer.se.fill.GraphicFill;
 import org.orbisgis.coremap.renderer.se.fill.HatchedFill;
 import org.orbisgis.coremap.renderer.se.fill.SolidFill;
+import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;

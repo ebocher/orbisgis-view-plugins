@@ -29,6 +29,13 @@
 package org.orbisgis.toc.se.label;
 
 import javax.swing.Icon;
+import org.orbisgis.coremap.renderer.se.label.Label;
+import org.orbisgis.coremap.renderer.se.label.LineLabel;
+import org.orbisgis.coremap.renderer.se.label.PointLabel;
+import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 /**
  * Meta-Panel for fill edition
@@ -103,8 +110,8 @@ public abstract class LegendUIMetaLabelPanel extends LegendUIAbstractMetaPanel {
 	}
 
 	@Override
-	public Icon getIcon() {
-        return OrbisGISIcon.getIcon("palette");
+	public Icon  getIcon() {
+        return SEAdvancedIcon.getIcon("palette");
 	}
 
 	@Override

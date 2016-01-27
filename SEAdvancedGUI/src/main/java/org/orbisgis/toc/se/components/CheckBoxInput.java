@@ -26,14 +26,41 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.toc.se.stroke;
+package org.orbisgis.toc.se.components;
 
-import org.orbisgis.core.renderer.se.stroke.Stroke;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Maxence Laurent
  */
-public interface LegendUIStrokeComponent {
-	Stroke getStroke();
+public abstract class CheckBoxInput extends JPanel implements ActionListener {
+
+    private JCheckBox cbx;
+
+	public CheckBoxInput(String name, boolean initialValue) {
+
+		super(new FlowLayout());
+
+        cbx = new JCheckBox(name, initialValue);
+        cbx.addActionListener(this);
+	    this.add(cbx);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+        valueChanged(cbx.isSelected());
+	}
+
+	/**
+	 * This method will be called each time the selection change
+	 * When errors occur or nothing (should never happen...), -1 is sent,
+	 * otherwise, the id of the selection is sent
+	 * @param newValue
+	 */
+	protected abstract void valueChanged(boolean newValue);
 }

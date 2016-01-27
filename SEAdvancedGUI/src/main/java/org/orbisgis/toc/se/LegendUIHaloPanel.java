@@ -26,15 +26,15 @@
  * or contact directly:
  * info_at_ orbisgis.org
  */
-package org.orbisgis.toc.se.graphic;
+package org.orbisgis.toc.se;
 
 import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
-import org.orbisgis.coremap.renderer.se.graphic.ViewBox;
+import org.orbisgis.coremap.renderer.se.common.Halo;
 import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
-import org.orbisgis.toc.se.LegendUIComponent;
-import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.components.UomInput;
+import org.orbisgis.toc.se.fill.LegendUIMetaFillPanel;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
 
@@ -42,71 +42,69 @@ import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
  *
  * @author Maxence Laurent
  */
-public abstract class LegendUIViewBoxPanel extends LegendUIComponent {
+public abstract class LegendUIHaloPanel extends LegendUIComponent {
 
-	protected ViewBox viewbox;
-	private LegendUIMetaRealPanel width;
-	private LegendUIMetaRealPanel height;
+	protected Halo halo;
+	private UomInput uomInput;
+	private LegendUIMetaRealPanel radius;
+	private LegendUIMetaFillPanel fill;
 
-	public LegendUIViewBoxPanel(LegendUIController controller, LegendUIComponent parent,
-            ViewBox vbox, boolean isNullable) {
-		super("View Box", controller, parent, 0, isNullable);
-		this.viewbox = vbox;
-
-		if (viewbox == null){
-			viewbox = new ViewBox();
-			isNullable = true;
-            this.isNullComponent = true;
-		}
+	public LegendUIHaloPanel(LegendUIController ctrl, LegendUIComponent parent, Halo h) {
+		super("halo", ctrl, parent, 0, true);
 
 		this.setBorder(BorderFactory.createTitledBorder(getName()));
 
-		height = new LegendUIMetaRealPanel("h", controller, this, viewbox.getHeight(), true) {
+		this.halo = h;
+
+		if (this.halo == null) {
+			this.halo = new Halo();
+			this.isNullComponent = true;
+		}
+
+		this.radius = new LegendUIMetaRealPanel("Radius", controller, this, halo.getRadius(), false) {
 
 			@Override
 			public void realChanged(RealParameter newReal) {
-				viewbox.setHeight(newReal);
+				halo.setRadius(newReal);
 			}
 		};
-		height.init();
 
-		width = new LegendUIMetaRealPanel("w", controller, this, viewbox.getWidth(), true) {
+		radius.init();
 
-			@Override
-			public void realChanged(RealParameter newReal) {
-				viewbox.setWidth(newReal);
-			}
-		};
-		width.init();
+		uomInput = new UomInput(halo);
+
+		fill = new LegendUIMetaFillPanel(controller, this, halo, false);
+		fill.init();
 	}
 
 	@Override
 	public Icon getIcon() {
-        return SEAdvancedIcon.getIcon("palette");
+		return SEAdvancedIcon.getIcon("palette");
 	}
 
 	@Override
 	protected void mountComponent() {
-		editor.add(width, BorderLayout.NORTH);
-		editor.add(height, BorderLayout.SOUTH);
+		editor.add(uomInput, BorderLayout.EAST);
+		editor.add(radius, BorderLayout.CENTER);
+		editor.add(fill, BorderLayout.SOUTH);
 	}
 
 	@Override
 	public Class getEditedClass() {
-		return ViewBox.class;
+		return Halo.class;
 	}
 
 	@Override
 	protected void turnOff() {
-		viewBoxChanged(null);
         this.isNullComponent = true;
+		haloChanged(null);
 	}
 
 	@Override
 	protected void turnOn() {
-		viewBoxChanged(viewbox);
         this.isNullComponent = false;
+		haloChanged(halo);
 	}
 
-	public abstract void viewBoxChanged(ViewBox newViewBox);
+	protected abstract void haloChanged(Halo halo);
 }
