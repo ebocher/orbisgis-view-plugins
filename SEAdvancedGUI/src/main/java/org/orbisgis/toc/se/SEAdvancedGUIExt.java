@@ -28,14 +28,20 @@
  */
 package org.orbisgis.toc.se;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.Action;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
+import org.orbisgis.coremap.layerModel.ILayer;
 import org.orbisgis.coremap.map.MapTransform;
+import org.orbisgis.coremap.renderer.se.SeExceptions;
+import org.orbisgis.coremap.renderer.se.Style;
 import org.orbisgis.sif.UIFactory;
 import org.orbisgis.sif.UIPanel;
 import org.orbisgis.tocapi.StyleAction;
@@ -67,6 +73,23 @@ public class SEAdvancedGUIExt implements TocActionFactory{
     @Override
     public void disposeActions(TocExt target, List<Action> actions) {
  
+    }
+    
+    /**
+     * 
+     */
+    public class AdvancedStyleEditor extends StyleAction{
+
+        public AdvancedStyleEditor(TocExt toc, String actionId, String actionLabel, String actionToolTip, Icon icon, ActionListener actionListener, KeyStroke keyStroke) {
+            super(toc, actionId, actionLabel, actionToolTip, icon, actionListener, keyStroke);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            super.actionPerformed(ae); //To change body of generated methods, choose Tools | Templates.
+        }       
+        
+        
     }
     
     
