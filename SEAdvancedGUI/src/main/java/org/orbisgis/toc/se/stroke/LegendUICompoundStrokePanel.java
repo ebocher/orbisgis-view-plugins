@@ -46,24 +46,19 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-
-import org.orbisgis.core.renderer.se.parameter.real.RealParameter;
-
-import org.orbisgis.core.renderer.se.stroke.AlternativeStrokeElements;
-import org.orbisgis.core.renderer.se.stroke.Stroke;
-import org.orbisgis.core.renderer.se.stroke.CompoundStroke;
-import org.orbisgis.core.renderer.se.stroke.CompoundStrokeElement;
-//import org.orbisgis.core.renderer.se.stroke.StrokeAnnotationGraphic;
-import org.orbisgis.core.renderer.se.stroke.StrokeElement;
-
-import org.orbisgis.view.toc.actions.cui.LegendUIAbstractPanel;
-import org.orbisgis.view.toc.actions.cui.LegendUIComponent;
-import org.orbisgis.view.toc.actions.cui.LegendUIController;
-import org.orbisgis.view.toc.actions.cui.components.CheckBoxInput;
-import org.orbisgis.view.toc.actions.cui.components.UomInput;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
-
-import org.orbisgis.view.icons.OrbisGISIcon;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
+import org.orbisgis.coremap.renderer.se.stroke.AlternativeStrokeElements;
+import org.orbisgis.coremap.renderer.se.stroke.CompoundStroke;
+import org.orbisgis.coremap.renderer.se.stroke.CompoundStrokeElement;
+import org.orbisgis.coremap.renderer.se.stroke.Stroke;
+import org.orbisgis.coremap.renderer.se.stroke.StrokeElement;
+import org.orbisgis.toc.se.LegendUIAbstractPanel;
+import org.orbisgis.toc.se.LegendUIComponent;
+import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.components.CheckBoxInput;
+import org.orbisgis.toc.se.components.UomInput;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
 
 /**
  *
@@ -228,10 +223,10 @@ public abstract class LegendUICompoundStrokePanel extends LegendUIComponent impl
         elemList.setCellRenderer(new ElemCellRenderer());
         elemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        btnElemRm = new JButton(OrbisGISIcon.getIcon("remove"));
-        btnElemAdd = new JButton(OrbisGISIcon.getIcon("add"));
-        btnElemDown = new JButton(OrbisGISIcon.getIcon("go-down"));
-        btnElemUp = new JButton(OrbisGISIcon.getIcon("go-up"));
+        btnElemRm = new JButton(SEAdvancedIcon.getIcon("remove"));
+        btnElemAdd = new JButton(SEAdvancedIcon.getIcon("add"));
+        btnElemDown = new JButton(SEAdvancedIcon.getIcon("go-down"));
+        btnElemUp = new JButton(SEAdvancedIcon.getIcon("go-up"));
 
 
         btnElemRm.setMargin(new Insets(0, 0, 0, 0));
@@ -571,7 +566,7 @@ public abstract class LegendUICompoundStrokePanel extends LegendUIComponent impl
 
     @Override
     public Icon getIcon() {
-        return OrbisGISIcon.getIcon("pencil");
+        return SEAdvancedIcon.getIcon("pencil");
     }
 
 
@@ -663,7 +658,7 @@ public abstract class LegendUICompoundStrokePanel extends LegendUIComponent impl
                                                       boolean isSelected,
                                                       boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            this.setIcon(OrbisGISIcon.getIcon("line"));
+            this.setIcon(SEAdvancedIcon.getIcon("line"));
             return this;
         }
 
@@ -678,7 +673,7 @@ public abstract class LegendUICompoundStrokePanel extends LegendUIComponent impl
                                                       boolean isSelected,
                                                       boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            this.setIcon(OrbisGISIcon.getIcon("image"));
+            this.setIcon(SEAdvancedIcon.getIcon("image"));
             return this;
         }
 

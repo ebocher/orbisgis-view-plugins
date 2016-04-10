@@ -33,10 +33,12 @@ import org.orbisgis.coremap.renderer.se.StrokeNode;
 import org.orbisgis.coremap.renderer.se.stroke.CompoundStroke;
 import org.orbisgis.coremap.renderer.se.stroke.GraphicStroke;
 import org.orbisgis.coremap.renderer.se.stroke.PenStroke;
+import org.orbisgis.coremap.renderer.se.stroke.Stroke;
 import org.orbisgis.coremap.renderer.se.stroke.TextStroke;
 import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 /**
  *
@@ -157,7 +159,7 @@ public class LegendUIMetaStrokePanel extends LegendUIAbstractMetaPanel {
 
 	@Override
 	public Icon getIcon() {
-        return OrbisGISIcon.getIcon("palette");
+        return SEAdvancedIcon.getIcon("palette");
 	}
 
 	@Override

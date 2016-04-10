@@ -34,7 +34,7 @@ import java.util.Iterator;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import org.orbisgis.coremap.layerModel.ILayer;
+import org.h2gis.utilities.GeometryTypeCodes;
 import org.orbisgis.coremap.renderer.se.Rule;
 import org.orbisgis.coremap.renderer.se.SeExceptions.InvalidStyle;
 import org.orbisgis.coremap.renderer.se.Style;
@@ -61,10 +61,13 @@ public class LegendUIController {
     private static final I18n I18N = I18nFactory.getI18n(LegendUIController.class);
 
             /**
+     * @param index
              * @param fts the style to edit.
+     * @param geometryType
+     * @throws org.orbisgis.coremap.renderer.se.SeExceptions.InvalidStyle
              */
 
-    public LegendUIController(int index,Style fts) throws InvalidStyle {
+    public LegendUIController(int index,Style fts, int geometryType) throws InvalidStyle {
 
 		this.style = new Style(fts.getJAXBElement(), fts.getLayer());
 
@@ -74,36 +77,33 @@ public class LegendUIController {
 		availableSymbolizers = new ArrayList<String>();
 
 		maxAllowedSize = new Dimension(1000, 750);
-
-                Type type = null;
-
-		try {
-			ILayer layer = style.getLayer();
-			type = layer.getDataSource().getMetadata().getFieldType(layer.getDataSource().getSpatialFieldIndex());
-		} catch (DriverException ex) {
-			Logger.getLogger(LegendUIController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		if (type == null) {
-			geometryType = Type.GEOMETRY;
-		} else {
-			geometryType = type.getTypeCode();
-		}
-
-		switch (geometryType) {
-			default:
-			case Type.GEOMETRY:
-			case Type.GEOMETRYCOLLECTION:
-			case Type.POLYGON:
-			case Type.MULTIPOLYGON:
-				availableSymbolizers.add(I18N.tr("Area Symbolizer"));
-			case Type.LINESTRING:
-			case Type.MULTILINESTRING:
-				availableSymbolizers.add(I18N.tr("Line Symbolizer"));
-			case Type.POINT:
-			case Type.MULTIPOINT:
-				availableSymbolizers.add(I18N.tr("Point Symbolizer"));
-		}
+                
+                
+                 switch(geometryType){
+            case GeometryTypeCodes.POINT:
+            case GeometryTypeCodes.POINTZ:
+            case GeometryTypeCodes.POINTZM:
+            case GeometryTypeCodes.MULTIPOINT:
+            case GeometryTypeCodes.MULTIPOINTZ:
+            case GeometryTypeCodes.MULTIPOINTM:
+                availableSymbolizers.add(I18N.tr("Point Symbolizer"));
+            case GeometryTypeCodes.LINESTRING:
+            case GeometryTypeCodes.LINESTRINGZ:
+            case GeometryTypeCodes.LINESTRINGZM:
+            case GeometryTypeCodes.MULTILINESTRING:
+            case GeometryTypeCodes.MULTILINESTRINGZ:
+            case GeometryTypeCodes.MULTILINESTRINGM:
+               availableSymbolizers.add(I18N.tr("Line Symbolizer"));
+            case GeometryTypeCodes.POLYGON:
+            case GeometryTypeCodes.POLYGONM:
+            case GeometryTypeCodes.POLYGONZ:
+            case GeometryTypeCodes.MULTIPOLYGON:
+            case GeometryTypeCodes.MULTIPOLYGONZ:
+            case GeometryTypeCodes.MULTIPOLYGONM:
+                availableSymbolizers.add(I18N.tr("Area Symbolizer"));
+            default:
+                availableSymbolizers.add(I18N.tr("Point Symbolizer"));
+        }
 
 		availableSymbolizers.add(I18N.tr("Text Symbolizer"));
 

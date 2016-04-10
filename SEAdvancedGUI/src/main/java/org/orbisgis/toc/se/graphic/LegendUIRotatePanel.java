@@ -35,7 +35,7 @@ import org.orbisgis.coremap.renderer.se.transform.Rotate;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
 
 
 /**

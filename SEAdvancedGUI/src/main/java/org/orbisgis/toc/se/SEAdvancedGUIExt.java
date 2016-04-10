@@ -31,19 +31,25 @@ package org.orbisgis.toc.se;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import org.h2gis.utilities.SFSUtilities;
+import org.h2gis.utilities.TableLocation;
 import org.orbisgis.coremap.layerModel.ILayer;
-import org.orbisgis.coremap.map.MapTransform;
+import org.orbisgis.coremap.layerModel.MapContext;
 import org.orbisgis.coremap.renderer.se.SeExceptions;
 import org.orbisgis.coremap.renderer.se.Style;
+import org.orbisgis.mapeditorapi.MapElement;
 import org.orbisgis.sif.UIFactory;
 import org.orbisgis.sif.UIPanel;
+import org.orbisgis.sif.edition.EditableElement;
+import org.orbisgis.sif.edition.EditorDockable;
 import org.orbisgis.tocapi.StyleAction;
 import org.orbisgis.tocapi.TocActionFactory;
 import org.orbisgis.tocapi.TocExt;
@@ -86,45 +92,41 @@ public class SEAdvancedGUIExt implements TocActionFactory{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            super.actionPerformed(ae); //To change body of generated methods, choose Tools | Templates.
-        }       
-        
-        
-    }
-    
-    
-     /**
-         * If used, this method opens an advanced editor for the currently selected
-         * style.
-         */
-        public void onAdvancedEditor(){
-                try {
+            if (toc instanceof EditorDockable) {                
+                EditableElement editableElement = ((EditorDockable) toc).getEditableElement();
+                if (editableElement instanceof MapElement) {
+                    MapContext mapContext = ((MapElement) editableElement).getMapContext();
+                    try {
                         Style[] styles = mapContext.getSelectedStyles();
-                        if(styles.length == 1){
-                                Style style = styles[0];
-                                ILayer layer = style.getLayer();
-                                if(isStyleAllowed(layer)){
-                                    int index = layer.indexOf(style);
-                                    // Obtain MapTransform
-                                    MapEditor editor = mapElement.getMapEditor();
-                                    MapTransform mt = editor.getMapControl().getMapTransform();
-                                    if (mt == null) {
-                                            JOptionPane.showMessageDialog(null,I18N.tr("Advanced Editor can't be loaded"));
-                                    }
-
-                                    LegendUIController controller = new LegendUIController(index,style);
-
-                                    if (UIFactory.showDialog((UIPanel)controller.getMainPanel())) {
-                                            layer.setStyle(index,controller.getEditedFeatureTypeStyle());
-                                    }
-                                }else{
-                                   LOGGER.info("This functionality is not supported."); 
+                        if (styles.length == 1) {
+                            Style style = styles[0];
+                            ILayer layer = style.getLayer();
+                            if (layer.getTableReference() != null && !layer.getTableReference().isEmpty()) {
+                                int index = layer.indexOf(style); 
+                                int geometryType = 0;
+                                TableLocation tableLocation = TableLocation.parse(layer.getTableReference());
+                                try (Connection connection = mapContext.getDataManager().getDataSource().getConnection()) {
+                                    geometryType = SFSUtilities.getGeometryType(connection, tableLocation, "");
+                                } catch (SQLException ex) {
+                                    LOGGER.error(I18N.tr("Cannot find the geometry type"), ex);
                                 }
+
+                                LegendUIController controller = new LegendUIController(index, style, geometryType);
+                                if (UIFactory.showDialog((UIPanel) controller.getMainPanel())) {
+                                    layer.setStyle(index, controller.getEditedFeatureTypeStyle());
+                                }
+                            } else {
+                                LOGGER.info("This functionality is not supported.");
+                            }
                         }
-		} catch (SeExceptions.InvalidStyle ex) {
-			LOGGER.error(I18N.tr("Error while editing the legend"), ex);
-		}
-        }
-    
+                    } catch (SeExceptions.InvalidStyle ex) {
+                        LOGGER.error(I18N.tr("Error while editing the legend"), ex);
+                    }
+                }
+            }
+        } 
+        
+        
+    }    
     
 }

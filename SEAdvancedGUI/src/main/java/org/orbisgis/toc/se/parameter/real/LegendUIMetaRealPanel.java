@@ -35,14 +35,11 @@ import org.orbisgis.coremap.renderer.se.parameter.real.RealAttribute;
 import org.orbisgis.coremap.renderer.se.parameter.real.RealLiteral;
 import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
 import org.orbisgis.coremap.renderer.se.parameter.real.Recode2Real;
-import org.orbisgis.coremap.renderer.se.parameter.string.StringAttribute;
 import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.toc.se.parameter.LegendUICategorizePanel;
 import org.orbisgis.toc.se.parameter.LegendUIPropertyNamePanel;
-import org.orbisgis.toc.se.parameter.LegendUIRecodePanel;
 
 
 /**
@@ -95,49 +92,6 @@ public abstract class LegendUIMetaRealPanel extends LegendUIAbstractMetaPanel {
 
 
 			return new LegendUIPropertyNamePanel("Attribute " + getName(), controller, this, pName, false) {
-
-				@Override
-				protected void turnOff() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-
-				@Override
-				protected void turnOn() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-			};
-
-
-		} else if (newClass == Categorize2Real.class) {
-			Categorize2Real categorize;
-			if (real instanceof Categorize2Real) {
-				categorize = (Categorize2Real) real;
-			} else {
-				categorize = new Categorize2Real(new RealLiteral(),
-						new RealLiteral(), new RealAttribute(""));
-			}
-
-			return new LegendUICategorizePanel("Categorized " + getName(), controller, this, categorize, false) {
-
-				@Override
-				protected void turnOff() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-
-				@Override
-				protected void turnOn() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-			};
-
-		} else if (newClass == Recode2Real.class) {
-			Recode2Real recode;
-			if (real instanceof Recode2Real) {
-				recode = (Recode2Real) real;
-			} else {
-				recode = new Recode2Real(new RealLiteral(), new StringAttribute(""));
-			}
-			return new LegendUIRecodePanel("UniqueValue map " + getName(), controller, this, recode, false) {
 
 				@Override
 				protected void turnOff() {

@@ -29,21 +29,17 @@
 package org.orbisgis.toc.se.parameter.color;
 
 import javax.swing.Icon;
-import javax.swing.text.AttributeSet.ColorAttribute;
 import org.orbisgis.coremap.renderer.se.parameter.color.Categorize2Color;
+import org.orbisgis.coremap.renderer.se.parameter.color.ColorAttribute;
 import org.orbisgis.coremap.renderer.se.parameter.color.ColorLiteral;
 import org.orbisgis.coremap.renderer.se.parameter.color.ColorParameter;
 import org.orbisgis.coremap.renderer.se.parameter.color.Interpolate2Color;
 import org.orbisgis.coremap.renderer.se.parameter.color.Recode2Color;
-import org.orbisgis.coremap.renderer.se.parameter.real.RealAttribute;
-import org.orbisgis.coremap.renderer.se.parameter.string.StringAttribute;
 import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.toc.se.parameter.LegendUICategorizePanel;
 import org.orbisgis.toc.se.parameter.LegendUIPropertyNamePanel;
-import org.orbisgis.toc.se.parameter.LegendUIRecodePanel;
 
 /**
  *
@@ -108,49 +104,7 @@ public abstract class LegendUIMetaColorPanel extends LegendUIAbstractMetaPanel {
 			};
 
 
-		} else if (newClass == Categorize2Color.class) {
-			Categorize2Color categorize;
-			if (color instanceof Categorize2Color) {
-				categorize = (Categorize2Color) color;
-			} else {
-				categorize = new Categorize2Color(new ColorLiteral(),
-						new ColorLiteral(), new RealAttribute(""));
-			}
-
-			return new LegendUICategorizePanel("Categorized " + getName(), controller, this, categorize, false) {
-
-				@Override
-				protected void turnOff() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-
-				@Override
-				protected void turnOn() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-			};
-
-		} else if (newClass == Recode2Color.class) {
-			Recode2Color recode;
-			if (color instanceof Recode2Color) {
-				recode = (Recode2Color) color;
-			} else {
-				recode = new Recode2Color(new ColorLiteral(), new StringAttribute((String)null));
-			}
-			return new LegendUIRecodePanel("UniqueValue map " + getName(), controller, this, recode, false) {
-
-				@Override
-				protected void turnOff() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-
-				@Override
-				protected void turnOn() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-			};
-
-
+		
 		} else if (newClass == Interpolate2Color.class) {
 			Interpolate2Color interpol;
 			if (color instanceof Interpolate2Color) {

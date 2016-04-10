@@ -39,9 +39,7 @@ import org.orbisgis.toc.se.LegendUIAbstractMetaPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
 import org.orbisgis.toc.se.icons.SEAdvancedIcon;
-import org.orbisgis.toc.se.parameter.LegendUICategorizePanel;
 import org.orbisgis.toc.se.parameter.LegendUIPropertyNamePanel;
-import org.orbisgis.toc.se.parameter.LegendUIRecodePanel;
 
 /**
  *
@@ -92,48 +90,6 @@ public abstract class LegendUIMetaStringPanel extends LegendUIAbstractMetaPanel 
 			}
 
 			return new LegendUIPropertyNamePanel("Attribute " + getName(), controller, this, s, false) {
-
-				@Override
-				protected void turnOff() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-
-				@Override
-				protected void turnOn() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-			};
-		} else if (newClass == Categorize2String.class) {
-			Categorize2String s;
-			if (string instanceof Categorize2String) {
-				s = (Categorize2String) string;
-			} else {
-				s = new Categorize2String(new StringLiteral("Class1"),
-						new StringLiteral("FallbackValue"),
-						new RealAttribute(""));
-			}
-
-			return new LegendUICategorizePanel("Categorized " + getName(), controller, this, s, false) {
-
-				@Override
-				protected void turnOff() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-
-				@Override
-				protected void turnOn() {
-					throw new UnsupportedOperationException("Unreachable code.");
-				}
-			};
-		} else if (newClass == Recode2String.class) {
-			Recode2String s;
-
-			if (string instanceof Recode2String) {
-				s = (Recode2String) string;
-			} else {
-				s = new Recode2String(new StringLiteral("n/a"), new StringAttribute(""));
-			}
-			return new LegendUIRecodePanel("UniqueValue mapping " + getName(), controller, this, s, false) {
 
 				@Override
 				protected void turnOff() {

@@ -35,6 +35,7 @@ import org.orbisgis.coremap.renderer.se.parameter.string.StringParameter;
 import org.orbisgis.coremap.renderer.se.stroke.PenStroke;
 import org.orbisgis.coremap.renderer.se.stroke.PenStroke.LineCap;
 import org.orbisgis.coremap.renderer.se.stroke.PenStroke.LineJoin;
+import org.orbisgis.coremap.renderer.se.stroke.Stroke;
 import org.orbisgis.toc.se.LegendUIAbstractPanel;
 import org.orbisgis.toc.se.LegendUIComponent;
 import org.orbisgis.toc.se.LegendUIController;
@@ -42,6 +43,7 @@ import org.orbisgis.toc.se.components.CheckBoxInput;
 import org.orbisgis.toc.se.components.ComboBoxInput;
 import org.orbisgis.toc.se.components.UomInput;
 import org.orbisgis.toc.se.fill.LegendUIMetaFillPanel;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
 import org.orbisgis.toc.se.parameter.string.LegendUIMetaStringPanel;
 
@@ -158,7 +160,7 @@ public abstract class LegendUIPenStrokePanel extends LegendUIComponent implement
 
 	@Override
 	public Icon getIcon() {
-        return OrbisGISIcon.getIcon("pencil");
+        return SEAdvancedIcon.getIcon("pencil");
 	}
 
 	@Override

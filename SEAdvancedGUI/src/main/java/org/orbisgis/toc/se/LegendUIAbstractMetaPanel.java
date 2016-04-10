@@ -34,6 +34,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
 
 /**
  *
@@ -54,7 +56,7 @@ public abstract class LegendUIAbstractMetaPanel extends LegendUIComponent {
 
         this.setBorder(BorderFactory.createTitledBorder(name));
 
-        changeType = new JButton(OrbisGISIcon.getIcon("arrow_refresh"));
+        changeType = new JButton(SEAdvancedIcon.getIcon("refresh"));
         changeType.setMargin(new Insets(0, 0, 0, 0));
         changeType.addActionListener(new ChangeTypeListener(this));
 

@@ -31,18 +31,31 @@ package org.orbisgis.toc.se;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import org.orbisgis.coremap.layerModel.ILayer;
+import org.orbisgis.coremap.layerModel.LayerException;
 import org.orbisgis.coremap.renderer.se.AreaSymbolizer;
+import org.orbisgis.coremap.renderer.se.FillNode;
+import org.orbisgis.coremap.renderer.se.LineSymbolizer;
+import org.orbisgis.coremap.renderer.se.PointSymbolizer;
+import org.orbisgis.coremap.renderer.se.RasterSymbolizer;
+import org.orbisgis.coremap.renderer.se.StrokeNode;
 import org.orbisgis.coremap.renderer.se.Symbolizer;
+import org.orbisgis.coremap.renderer.se.TextSymbolizer;
 import org.orbisgis.coremap.renderer.se.VectorSymbolizer;
+import org.orbisgis.coremap.renderer.se.label.Label;
+import org.orbisgis.coremap.renderer.se.parameter.real.RealParameter;
+import org.orbisgis.coremap.renderer.se.transform.Translate;
 import org.orbisgis.toc.se.components.ComboBoxInput;
 import org.orbisgis.toc.se.components.TextInput;
-import org.orbisgis.view.toc.actions.cui.components.UomInput;
-import org.orbisgis.view.toc.actions.cui.fill.LegendUIMetaFillPanel;
-import org.orbisgis.view.toc.actions.cui.graphic.LegendUICompositeGraphicPanel;
-import org.orbisgis.view.toc.actions.cui.graphic.LegendUITranslatePanel;
-import org.orbisgis.view.toc.actions.cui.label.LegendUIMetaLabelPanel;
-import org.orbisgis.view.toc.actions.cui.parameter.real.LegendUIMetaRealPanel;
-import org.orbisgis.view.toc.actions.cui.stroke.LegendUIMetaStrokePanel;
+import org.orbisgis.toc.se.components.UomInput;
+import org.orbisgis.toc.se.fill.LegendUIMetaFillPanel;
+import org.orbisgis.toc.se.graphic.LegendUICompositeGraphicPanel;
+import org.orbisgis.toc.se.graphic.LegendUITranslatePanel;
+import org.orbisgis.toc.se.icons.SEAdvancedIcon;
+import org.orbisgis.toc.se.label.LegendUIMetaLabelPanel;
+import org.orbisgis.toc.se.parameter.real.LegendUIMetaRealPanel;
+import org.orbisgis.toc.se.stroke.LegendUIMetaStrokePanel;
 
 /**
  * This panel edit symbolizer
@@ -163,7 +176,7 @@ public class LegendUISymbolizerPanel extends LegendUIComponent {
             ILayer layer = controller.getEditedFeatureTypeStyle().getLayer();
 
             try {
-                if (layer.isVectorial() && layer.getDataSource().getGeometry(0).getDimension() > 0) {
+                if (layer.isVectorial()) {
                     String[] options = {"one", "on vertices"};
                     sMode = new ComboBoxInput(options, ps.isOnVertex() ? 1 : 0) {
 
@@ -172,10 +185,9 @@ public class LegendUISymbolizerPanel extends LegendUIComponent {
                             ps.setOnVertex(i == 1);
                         }
 
-
                     };
                 }
-            } catch (DriverException ex) {
+            } catch (LayerException ex) {
                 Logger.getLogger(LegendUISymbolizerPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (symb instanceof TextSymbolizer) {
@@ -202,7 +214,8 @@ public class LegendUISymbolizerPanel extends LegendUIComponent {
 
             };
             label.init();
-        } else if (symb instanceof RasterSymbolizer) { // ??
+        } else if (symb instanceof RasterSymbolizer) { 
+            //TODO prepare RasterSymbolizer panel
         }
     }
 
@@ -215,20 +228,18 @@ public class LegendUISymbolizerPanel extends LegendUIComponent {
     @Override
     public Icon getIcon() {
         Class cl = symbolizer.getClass();
-
         if (cl == AreaSymbolizer.class) {
-            return OrbisGISIcon.getIcon("layerpolygon");
+            return SEAdvancedIcon.getIcon("layerpolygon");
         } else if (cl == LineSymbolizer.class) {
-            return OrbisGISIcon.getIcon("layerline");
+            return SEAdvancedIcon.getIcon("layerline");
         } else if (cl == PointSymbolizer.class) {
-            return OrbisGISIcon.getIcon("layerpoint");
+            return SEAdvancedIcon.getIcon("layerpoint");
         } else if (cl == TextSymbolizer.class) {
-            return OrbisGISIcon.getIcon("pencil");
+            return SEAdvancedIcon.getIcon("pencil");
         } else if (cl == RasterSymbolizer.class) {
-            return OrbisGISIcon.getIcon("layerrgb");
+            return SEAdvancedIcon.getIcon("image");
         }
-
-        return OrbisGISIcon.getIcon("pencil");
+        return SEAdvancedIcon.getIcon("pencil");
     }
 
 

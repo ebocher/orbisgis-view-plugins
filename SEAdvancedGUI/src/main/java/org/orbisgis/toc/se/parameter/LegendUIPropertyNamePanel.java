@@ -28,6 +28,7 @@
  */
 package org.orbisgis.toc.se.parameter;
 
+import java.sql.Types;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import org.orbisgis.coremap.renderer.se.parameter.ValueReference;
@@ -74,17 +75,17 @@ public abstract class LegendUIPropertyNamePanel extends LegendUIComponent
 		int current = 0;
 
 		try {
-			meta = ds.getMetadata();
+			meta = ds.getMetadata();                        
 
 			if (p instanceof RealParameter) {
-				mask = Type.BYTE + Type.DOUBLE + Type.FLOAT + Type.INT
-						+ Type.LONG + Type.SHORT;
+				mask = Types.BINARY + Types.DOUBLE + Types.FLOAT + Types.TINYINT
+						+ Types.INTEGER + Types.BIGINT+ Types.NUMERIC+ Types.SMALLINT;
 			} else if (p instanceof StringParameter) {
-				mask = Type.BINARY + Type.BOOLEAN + Type.BYTE + Type.DATE
-						+ Type.DOUBLE + Type.FLOAT + Type.INT + Type.LONG
-						+ Type.SHORT + Type.STRING + Type.TIMESTAMP + Type.TIME;
+				mask = Types.BINARY + Types.BOOLEAN + + Types.DATE
+						+ Types.DOUBLE + Types.FLOAT + Types.INTEGER + Types.NUMERIC+
+						+ Types.TINYINT+Types.BIGINT + Types.SMALLINT+ Types.VARCHAR +Types.CHAR+ Types.TIMESTAMP + Types.TIME;
 			} else if (p instanceof GeometryAttribute) {
-				mask = Type.GEOMETRY + Type.RASTER;
+				mask = Types.GEOMETRY + Type.RASTER;
 			} else if (p instanceof ColorParameter) {
 				mask = Type.STRING;
 			}
@@ -104,8 +105,6 @@ public abstract class LegendUIPropertyNamePanel extends LegendUIComponent
 		} catch (DriverException ex) {
 			Logger.getLogger(LegendUIPropertyNamePanel.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
-
 		fieldList = new ComboBoxInputImpl(possibilities.toArray(new String[0]), current, p);
 	}
 
